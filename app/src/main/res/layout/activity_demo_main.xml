@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Loading in Activity"
+        android:textAllCaps="false"
+        android:onClick="onActivityLoadingClick"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Loading in Fragment"
+        android:textAllCaps="false"
+        android:onClick="onFragmentLoadingClick"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Loading without BaseStatusActivity"
+        android:textAllCaps="false"
+        android:onClick="onNormalActivityClick"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Loading with BottomNavigationView"
+        android:textAllCaps="false"
+        android:onClick="onNavigationActivityClick"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Loading with delayTime by default"
+        android:textAllCaps="false"
+        android:onClick="onDelayActivityClick"
+        />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="LoadMoreActivity"
+        android:textAllCaps="false"
+        android:onClick="onLoadMoreActivityClick"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="LoadMoreFragment"
+        android:textAllCaps="false"
+        android:onClick="onLoadMoreFragmentClick"
+        />
+
+
+</LinearLayout>

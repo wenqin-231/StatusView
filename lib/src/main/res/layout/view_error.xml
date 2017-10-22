@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/error_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:clickable="true"
+    android:padding="16dp"
+    >
+
+    <ImageView
+        android:id="@+id/error_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sleep"/>
+
+    <TextView
+        android:id="@+id/error_text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/error_text"
+        android:layout_centerInParent="true"
+        android:textColor="@color/textColorLight"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        />
+
+    <TextView
+        android:id="@+id/error_text_subheading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:lineSpacingExtra="5dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/error_text_sub"
+        android:textColor="@color/textColorSub"
+        android:textSize="16sp"
+        />
+
+    <Button
+        android:id="@+id/error_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:text="@string/error_btn_text"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/retry_btn_bg_normal"
+        android:textColor="@color/red600"
+        />
+
+</LinearLayout>

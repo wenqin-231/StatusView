@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">StatusView</string>
+    <string name="loading_text">Loading…</string>
+    <string name="no_data">No Results Found</string>
+    <string name="error_text">Wake up your connection !</string>
+    <string name="error_text_sub">Your internet seems too slow to reach our server</string>
+    <string name="error_btn_text">Try Again</string>
+</resources>

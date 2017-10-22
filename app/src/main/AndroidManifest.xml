@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.lewis.ui.demo">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".DemoMainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".LoadingActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".FragmentActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".NormalActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".EmptyActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".NavigationActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".DelayActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".LoadMoreActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".LoadMoreFragmentActivity"
+                  android:screenOrientation="portrait"/>
+    </application>
+
+</manifest>

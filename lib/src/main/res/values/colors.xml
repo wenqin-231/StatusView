@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--alpha of black-->
+    <color name="black60">#99000000</color>
+    <color name="black54">#8A000000</color>
+    <color name="black87">#DE000000</color>
+
+    <color name="grey100">#F5F5F5</color>
+    <color name="red600">#E53935</color>
+
+
+    <color name="textColorDark">@color/grey100</color>
+    <color name="progressBarColorDark">@color/grey100</color>
+    <color name="textColorLight">@color/black87</color>
+    <color name="textColorSub">@color/black54</color>
+</resources>

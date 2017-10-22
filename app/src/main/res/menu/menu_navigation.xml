@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:checked="true"
+        android:title="home"
+        android:icon="@drawable/ic_home_black_24dp"
+        />
+
+    <item
+        android:id="@+id/menu_msg"
+        android:title="message"
+        android:icon="@drawable/ic_message_black_24dp"
+        />
+
+    <item
+        android:id="@+id/menu_mine"
+        android:title="mine"
+        android:icon="@drawable/ic_perm_identity_black_24dp"
+        />
+
+</menu>
