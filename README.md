@@ -1,4 +1,5 @@
-# StatusView
+# StatusView [![](https://jitpack.io/v/wenqin-231/StatusView.svg)](https://jitpack.io/#wenqin-231/StatusView)
+
 This is a library to help you show the different status of view such as loading , empty and error easily.
 
 ### Features
@@ -9,11 +10,23 @@ This is a library to help you show the different status of view such as loading 
 * Easily use. 
 * With a delay loading avoid the too fast loading.
 * Support the Toolbar、NavigationBottomBar and etc.
-* Can use it with my forked SpringView gracefully.
+* Can use it with [my forked SpringView]("https://github.com/wenqin-231/SpringView") gracefully.
 
 ### Demo
 
+[DownLoad Demo](http://fir.im/StatusView)
 
+* Loading with dialog
+
+  ![](https://github.com/wenqin-231/StatusView/blob/master/art/status_view_dialog.gif?raw=true)
+
+* Loading error
+
+  ![](https://github.com/wenqin-231/StatusView/blob/master/art/staus_view_error.gif?raw=true)
+
+* Loading empty
+
+  ![](https://github.com/wenqin-231/StatusView/blob/master/art/status_view_empty.gif?raw=true)
 
 ### Usage
 
@@ -51,3 +64,29 @@ More ways to use you can check it in my demo.
 
 
 
+**Step 1.** Add the JitPack repository to your build file
+
+```
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+**Step 2.** Add the dependency
+
+```
+dependencies {
+   compile 'com.github.wenqin-231:StatusView:v0.1'
+}
+```
+
+
+
+### More
+
+The default empty view and error view are from [dribbble](https://dribbble.com/shots/2326563-The-Expression-of-The-Fork).
+
+![](https://github.com/wenqin-231/StatusView/blob/master/art/dirbbble-icon.png?raw=true)
