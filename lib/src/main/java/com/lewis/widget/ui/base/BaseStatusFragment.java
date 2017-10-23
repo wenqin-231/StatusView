@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.lewis.widget.ui.ToolBarUtils;
 import com.lewis.widget.ui.view.DefaultToolbar;
 import com.lewis.widget.ui.view.StatusView;
 
@@ -22,14 +23,13 @@ public class BaseStatusFragment extends Fragment{
 	protected StatusView mStatusView;
 	protected Toolbar mToolbar;
 
-	protected LinearLayout mContentView;
-	private ViewGroup mParentView;
+	private LinearLayout mContentView;
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		mParentView = (ViewGroup) view.getParent();
+		ViewGroup parentView = (ViewGroup) view.getParent();
 		View fragmentView = buildFragmentView(view);
 
 		if (isAddToolBar()) {
@@ -44,9 +44,12 @@ public class BaseStatusFragment extends Fragment{
 			mContentView.setLayoutParams(lp);
 			mContentView.setOrientation(LinearLayout.VERTICAL);
 
-			mParentView.removeAllViews();
-			mParentView.addView(mContentView);
+			parentView.removeAllViews();
+			parentView.addView(mContentView);
 			mContentView.addView(mToolbar);
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+				mContentView.addView(ToolBarUtils.getLineView(getContext()));
+			}
 			mContentView.addView(fragmentView);
 
 			mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -58,17 +61,14 @@ public class BaseStatusFragment extends Fragment{
 		}
 
 		if (isAddStatusView()) {
-			mStatusView = StatusView.initInFragment(getActivity(), mParentView);
+			mStatusView = StatusView.initInFragment(getActivity(), parentView);
 
 			if (isAddToolBar()) {
 				mContentView.post(new Runnable() {
 					@Override
 					public void run() {
-						int toolbarTranslationZ = 0;
-						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-							toolbarTranslationZ = (int) mToolbar.getTranslationZ();
-						}
-						mStatusView.setMarginTop(toolbarTranslationZ + mToolbar.getHeight());
+						if (mStatusView != null)
+							mStatusView.setMarginTop((int) ToolBarUtils.getToolbarHeight(mToolbar));
 					}
 				});
 			}

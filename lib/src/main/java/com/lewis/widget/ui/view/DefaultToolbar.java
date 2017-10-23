@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ import com.lewis.widget.ui.R;
 public class DefaultToolbar extends Toolbar {
 
 	private TextView mCenterTitle;
+	private View mLineView;
 
 	public DefaultToolbar(Context context) {
 		this(context, null);
@@ -46,7 +48,7 @@ public class DefaultToolbar extends Toolbar {
 
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			setTranslationZ(6f);
+			setElevation(6f);
 		}
 
 		setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);

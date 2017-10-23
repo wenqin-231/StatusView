@@ -44,7 +44,7 @@ public class StatusView extends FrameLayout {
 		OTHER
 	}
 
-	private static final int DEFAULT_DEALAY_TIME = 600;
+	private static final int DEFAULT_DELAY_TIME = 600;
 
 	private Status mCurrentStatus = Status.NORMAL;
 
@@ -74,7 +74,7 @@ public class StatusView extends FrameLayout {
 
 	private long mStartTime, mLoadingTime;
 
-	private long mDelayMills = DEFAULT_DEALAY_TIME;
+	private long mDelayMills = DEFAULT_DELAY_TIME;
 
 	private Handler mDelayHandler = new Handler(Looper.getMainLooper());
 
@@ -267,16 +267,6 @@ public class StatusView extends FrameLayout {
 			mDialogLayout.setBackground(ContextCompat.getDrawable(getContext(), resId));
 	}
 
-	public void setEmptyViewBackgroundColor(@ColorRes int resId) {
-		if (mEmptyLayout != null)
-			mEmptyLayout.setBackgroundColor(ContextCompat.getColor(getContext(), resId));
-	}
-
-	public void setErrorViewBackgroundColor(@ColorRes int resId) {
-		if (mErrorLayout != null)
-			mErrorLayout.setBackgroundColor(ContextCompat.getColor(getContext(), resId));
-	}
-
 	public void setOnRetryBtnClickListener(OnRetryBtnClickListener onRetryBtnClickListener) {
 		mOnRetryBtnClickListener = onRetryBtnClickListener;
 	}
@@ -318,11 +308,6 @@ public class StatusView extends FrameLayout {
 	public void setErrorViewIcon(int resId) {
 		if (mErrorIcon != null)
 			mErrorIcon.setImageResource(resId);
-	}
-
-	public void setRetryBtnBackground(@DrawableRes int resId) {
-		if (mErrorBtn != null)
-			mErrorBtn.setBackgroundResource(resId);
 	}
 
 	public void setDialogText(TextView dialogText) {
@@ -374,7 +359,7 @@ public class StatusView extends FrameLayout {
 	}
 
 	public void resetDefaultDelayTime() {
-		setDelayMillsForLoading(DEFAULT_DEALAY_TIME);
+		setDelayMillsForLoading(DEFAULT_DELAY_TIME);
 	}
 
 	private void setDelayCall(final Status status, final OnDelayCallBackListener listener) {

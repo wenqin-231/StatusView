@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.lewis.widget.ui.ToolBarUtils;
 import com.lewis.widget.ui.view.DefaultToolbar;
 import com.lewis.widget.ui.view.StatusView;
 
@@ -23,8 +24,8 @@ public class BaseStatusActivity extends AppCompatActivity {
 	protected StatusView mStatusView;
 	protected Toolbar mToolbar;
 
-	protected LinearLayout mToolbarLayout;
-	protected ViewGroup parentView;
+	private LinearLayout mToolbarLayout;
+	private ViewGroup parentView;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +53,9 @@ public class BaseStatusActivity extends AppCompatActivity {
 
 			parentView.addView(mToolbarLayout);
 			mToolbarLayout.addView(mToolbar);
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+				mToolbarLayout.addView(ToolBarUtils.getLineView(this));
+			}
 			setSupportActionBar(mToolbar);
 
 			mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -95,12 +99,8 @@ public class BaseStatusActivity extends AppCompatActivity {
 		super.onWindowFocusChanged(hasFocus);
 
 		if (hasFocus && isAddToolBar()) {
-			int toolbarTranslationZ = 0;
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-				toolbarTranslationZ = (int) mToolbar.getTranslationZ();
-			}
 			if (mStatusView != null)
-				mStatusView.setMarginTop(mToolbar.getHeight() +  toolbarTranslationZ);
+				mStatusView.setMarginTop((int) ToolBarUtils.getToolbarHeight(mToolbar));
 		}
 	}
 
