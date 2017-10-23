@@ -30,7 +30,7 @@ This is a library to help you show the different status of view such as loading 
 
 ### Usage
 
-* Use it in with `BaseStatusActivity` or `BaseStatusFragment` :
+* Use it  with `BaseStatusActivity` or `BaseStatusFragment` :
 
 ```
 public class DemoMainActivity extends BaseStatusActivity {
