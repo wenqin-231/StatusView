@@ -12,6 +12,6 @@
 
     <color name="textColorDark">@color/grey100</color>
     <color name="progressBarColorDark">@color/grey100</color>
-    <color name="textColorLight">@color/black87</color>
-    <color name="textColorSub">@color/black54</color>
+    <color name="textColorLight">#757B85</color>
+    <color name="textColorSub">#BBB8C0</color>
 </resources>
