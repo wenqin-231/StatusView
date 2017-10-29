@@ -16,7 +16,7 @@ import com.lewis.widget.ui.view.StatusView;
 
 /**
  * Created by Lewis on 2017/9/25.
- * Description:
+ * Description: you can extends this Activity or set the same code in your BaseActivity to use StatusView easily~
  */
 
 public class BaseStatusActivity extends AppCompatActivity {
@@ -24,7 +24,7 @@ public class BaseStatusActivity extends AppCompatActivity {
 	protected StatusView mStatusView;
 	protected Toolbar mToolbar;
 
-	private LinearLayout mToolbarLayout;
+	private LinearLayout mToolbarLayout; // the view is used if add toolbar
 	private ViewGroup parentView;
 
 	@Override
@@ -53,6 +53,7 @@ public class BaseStatusActivity extends AppCompatActivity {
 
 			parentView.addView(mToolbarLayout);
 			mToolbarLayout.addView(mToolbar);
+			// add a line view of toolbar if the sdk code < 21
 			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
 				mToolbarLayout.addView(ToolBarUtils.getLineView(this));
 			}
@@ -84,6 +85,7 @@ public class BaseStatusActivity extends AppCompatActivity {
 				ViewGroup.LayoutParams.MATCH_PARENT);
 		View contentView = buildContentView(view);
 		if (isAddToolBar()) {
+			// parentView is in toolbarLayout
 			mToolbarLayout.addView(contentView, params);
 		} else {
 			parentView.addView(contentView, params);

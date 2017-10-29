@@ -44,30 +44,41 @@ public class StatusView extends FrameLayout {
 		OTHER
 	}
 
-	private static final int DEFAULT_DELAY_TIME = 600;
+	private static final int DEFAULT_DELAY_TIME = 600; // default mills to show the content view by delay when loading too fast
 
 	private Status mCurrentStatus = Status.NORMAL;
 
 	private View mLoadingView, mDialogLoadingView, mEmptyView, mErrorView, mOtherView;
 
+	/**
+	 *  Dialog Loading
+	 */
 	private TextView mDialogText;
 	private RelativeLayout mDialogParentLayout;
 	private LinearLayout mDialogLayout;
 	private ProgressBar mDialogProgressBar;
 
+	/**
+	 * Normal Loading
+	 */
 	private LinearLayout mLoadingLayout;
 	private ProgressBar mLoadingProgress;
 	private TextView mLoadingText;
 
+	/**
+	 * Empty View
+	 */
 	private LinearLayout mEmptyLayout;
 	private ImageView mEmptyIcon;
 	private TextView mEmptyTitle, mEmptySubheading;
 
+	/**
+	 * Error View
+	 */
 	private LinearLayout mErrorLayout;
 	private ImageView mErrorIcon;
 	private TextView mErrorTitle, mErrorSubheading;
 	private Button mErrorBtn;
-
 	private OnRetryBtnClickListener mOnRetryBtnClickListener;
 
 	private int mMarginTop, mMarginBottom, mMarginLeft, mMarginRight;
@@ -178,7 +189,6 @@ public class StatusView extends FrameLayout {
 				addStatusView(status);
 			}
 		});
-
 	}
 
 	private void addStatusView(Status status) {

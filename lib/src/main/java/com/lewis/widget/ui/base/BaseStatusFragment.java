@@ -15,7 +15,7 @@ import com.lewis.widget.ui.view.StatusView;
 
 /**
  * Created by Lewis on 2017/9/25.
- * Description:
+ * Description: You can extend this Fragment or copy the code in your BaseFragment to use StatusView easily~
  */
 
 public class BaseStatusFragment extends Fragment{
@@ -23,7 +23,7 @@ public class BaseStatusFragment extends Fragment{
 	protected StatusView mStatusView;
 	protected Toolbar mToolbar;
 
-	private LinearLayout mContentView;
+	private LinearLayout mContentView; // the view is used if add toolbar
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class BaseStatusFragment extends Fragment{
 		ViewGroup parentView = (ViewGroup) view.getParent();
 		View fragmentView = buildFragmentView(view);
 
-		if (isAddToolBar()) {
+		if (isAddToolBar()) { // add a contentView of LinearLayout in Fragment's parent view to contain toolbar
 			mToolbar = onCreateToolbar();
 			if (mToolbar == null) {
 				mToolbar = new DefaultToolbar(getActivity());
@@ -47,6 +47,7 @@ public class BaseStatusFragment extends Fragment{
 			parentView.removeAllViews();
 			parentView.addView(mContentView);
 			mContentView.addView(mToolbar);
+			// add a line view of toolbar if the sdk code < 21
 			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
 				mContentView.addView(ToolBarUtils.getLineView(getContext()));
 			}
