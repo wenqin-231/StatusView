@@ -1,5 +1,6 @@
 package com.lewis.widget.ui.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.ColorRes;
@@ -24,7 +25,6 @@ import com.lewis.widget.ui.R;
 public class DefaultToolbar extends Toolbar {
 
 	private TextView mCenterTitle;
-	private View mLineView;
 
 	public DefaultToolbar(Context context) {
 		this(context, null);
@@ -52,6 +52,15 @@ public class DefaultToolbar extends Toolbar {
 		}
 
 		setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+		if (getContext() instanceof Activity) {
+			final Activity activity = (Activity) getContext();
+			setNavigationOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					activity.onBackPressed();
+				}
+			});
+		}
 	}
 
 	public void setCenterTitle(String text) {

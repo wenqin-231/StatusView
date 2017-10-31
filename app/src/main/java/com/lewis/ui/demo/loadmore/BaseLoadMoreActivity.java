@@ -50,6 +50,8 @@ public class BaseLoadMoreActivity extends BaseStatusActivity {
 	protected View buildContentView(View view) {
 		if (!isAddSpringView()) return view;
 
+		ViewGroup parentView = getWindow().getDecorView().findViewById(android.R.id.content);
+		parentView.removeAllViews();
 		ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
 				ViewGroup.LayoutParams.MATCH_PARENT);
 		view.setLayoutParams(lp);
@@ -57,6 +59,8 @@ public class BaseLoadMoreActivity extends BaseStatusActivity {
 		mSpringView.setContentView(view);
 		mSpringView.setHeader(new DefaultHeader(this));
 		mSpringView.setFooter(new DefaultFooter(this));
+		parentView.addView(mSpringView);
+
 		return mSpringView;
 	}
 

@@ -1,15 +1,13 @@
 package com.lewis.widget.ui.base;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
-import com.lewis.widget.ui.ToolBarUtils;
+import com.lewis.widget.ui.StatusManager;
 import com.lewis.widget.ui.view.DefaultToolbar;
 import com.lewis.widget.ui.view.StatusView;
 
@@ -18,84 +16,53 @@ import com.lewis.widget.ui.view.StatusView;
  * Description: You can extend this Fragment or copy the code in your BaseFragment to use StatusView easily~
  */
 
-public class BaseStatusFragment extends Fragment{
+public class BaseStatusFragment extends Fragment {
 
-	protected StatusView mStatusView;
-	protected Toolbar mToolbar;
+    protected StatusView mStatusView;
+    protected Toolbar mToolbar;
 
-	private LinearLayout mContentView; // the view is used if add toolbar
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initStatusView(view);
+    }
 
-	@Override
-	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
+    private void initStatusView(View view) {
+        ViewGroup parentView = (ViewGroup) view.getParent();
+        View fragmentView = buildFragmentView(view);
 
-		ViewGroup parentView = (ViewGroup) view.getParent();
-		View fragmentView = buildFragmentView(view);
+        StatusManager statusManager = StatusManager.get(getActivity())
+                .setParentView(parentView)
+                .setContentView(fragmentView)
+                .setToolbar(onCreateToolbar())
+                .isAddStatusView(isAddStatusView())
+                .isAddToolBar(isAddToolBar())
+                .launch();
 
-		if (isAddToolBar()) { // add a contentView of LinearLayout in Fragment's parent view to contain toolbar
-			mToolbar = onCreateToolbar();
-			if (mToolbar == null) {
-				mToolbar = new DefaultToolbar(getActivity());
-			}
+        mToolbar = statusManager.getToolbar();
+        mStatusView = statusManager.getStatusView();
+    }
 
-			mContentView = new LinearLayout(getActivity());
-			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-					ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-			mContentView.setLayoutParams(lp);
-			mContentView.setOrientation(LinearLayout.VERTICAL);
+    protected boolean isAddStatusView() {
+        return true;
+    }
 
-			parentView.removeAllViews();
-			parentView.addView(mContentView);
-			mContentView.addView(mToolbar);
-			// add a line view of toolbar if the sdk code < 21
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-				mContentView.addView(ToolBarUtils.getLineView(getContext()));
-			}
-			mContentView.addView(fragmentView);
+    protected boolean isAddToolBar() {
+        return false;
+    }
 
-			mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					getActivity().onBackPressed();
-				}
-			});
-		}
+    protected Toolbar onCreateToolbar() {
+        return null;
+    }
 
-		if (isAddStatusView()) {
-			mStatusView = StatusView.initInFragment(getActivity(), parentView);
+    protected DefaultToolbar getDefaultToolBar() {
+        if (mToolbar instanceof DefaultToolbar) {
+            return (DefaultToolbar) mToolbar;
+        }
+        return null;
+    }
 
-			if (isAddToolBar()) {
-				mContentView.post(new Runnable() {
-					@Override
-					public void run() {
-						if (mStatusView != null)
-							mStatusView.setMarginTop((int) ToolBarUtils.getToolbarHeight(mToolbar));
-					}
-				});
-			}
-		}
-	}
-
-	protected boolean isAddStatusView() {
-		return true;
-	}
-
-	protected boolean isAddToolBar() {
-		return false;
-	}
-
-	protected Toolbar onCreateToolbar() {
-		return null;
-	}
-
-	protected DefaultToolbar getDefaultToolBar () {
-		if (mToolbar instanceof DefaultToolbar) {
-			return (DefaultToolbar) mToolbar;
-		}
-		return null;
-	}
-
-	protected View buildFragmentView(View view) {
-		return view;
-	}
+    protected View buildFragmentView(View view) {
+        return view;
+    }
 }

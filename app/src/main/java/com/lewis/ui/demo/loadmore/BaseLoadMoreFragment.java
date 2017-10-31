@@ -15,53 +15,54 @@ import com.liaoinstan.springview.widget.SpringView;
  * Description:
  */
 
-public class BaseLoadMoreFragment extends BaseStatusFragment{
+public class BaseLoadMoreFragment extends BaseStatusFragment {
 
-	protected SpringView mSpringView;
+    protected SpringView mSpringView;
 
-	@Override
-	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-		if (isAddSpringView()) {
-			mSpringView = new SpringView(getActivity());
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        if (isAddSpringView()) {
+            mSpringView = new SpringView(getActivity());
 
-			mSpringView.setListener(new SpringView.OnFreshListener() {
-				@Override
-				public void onRefresh() {
-					onSpringViewRefresh();
-				}
+            mSpringView.setListener(new SpringView.OnFreshListener() {
+                @Override
+                public void onRefresh() {
+                    onSpringViewRefresh();
+                }
 
-				@Override
-				public void onLoadMore() {
-					onSpringViewLoadMore();
-				}
-			});
-		}
-		super.onViewCreated(view, savedInstanceState);
-	}
+                @Override
+                public void onLoadMore() {
+                    onSpringViewLoadMore();
+                }
+            });
+        }
+        super.onViewCreated(view, savedInstanceState);
+    }
 
-	@Override
-	protected View buildFragmentView(View view) {
-		if (!isAddSpringView()) {
-			return view;
-		}
-		ViewGroup parentView = (ViewGroup) view.getParent();
-		if (parentView != null)  parentView.removeView(view);
-		mSpringView.setContentView(view);
-		mSpringView.setHeader(new DefaultHeader(getActivity()));
-		mSpringView.setFooter(new DefaultFooter(getActivity()));
-		if (parentView != null) parentView.addView(mSpringView);
-		return mSpringView;
-	}
+    @Override
+    protected View buildFragmentView(View view) {
+        if (!isAddSpringView()) {
+            return view;
+        }
+        ViewGroup parentView = (ViewGroup) view.getParent();
+        if (parentView == null) throw new RuntimeException("the parent of view can not be null");
+        parentView.removeView(view);
+        mSpringView.setContentView(view);
+        mSpringView.setHeader(new DefaultHeader(getActivity()));
+        mSpringView.setFooter(new DefaultFooter(getActivity()));
+        parentView.addView(mSpringView);
+        return mSpringView;
+    }
 
-	protected boolean isAddSpringView() {
-		return true;
-	}
+    protected boolean isAddSpringView() {
+        return true;
+    }
 
-	protected void onSpringViewRefresh() {
+    protected void onSpringViewRefresh() {
 
-	}
+    }
 
-	protected void onSpringViewLoadMore() {
+    protected void onSpringViewLoadMore() {
 
-	}
+    }
 }

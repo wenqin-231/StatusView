@@ -6,7 +6,6 @@
     android:orientation="vertical"
     >
 
-
     <TextView
         android:id="@+id/delay_tips"
         android:layout_width="match_parent"
@@ -36,8 +35,5 @@
         android:textAllCaps="false"
         android:onClick="onDelayTimeClick"
         />
-
-
-
 
 </LinearLayout>

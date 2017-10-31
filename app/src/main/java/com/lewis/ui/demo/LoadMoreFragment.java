@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.lewis.ui.demo.adapter.LoadMoreAdapter;
 import com.lewis.ui.demo.loadmore.BaseLoadMoreFragment;
-import com.lewis.widget.ui.view.StatusView;
+import com.lewis.widget.ui.Status;
 
 /**
  * Created by Lewis on 2017/10/10.
@@ -45,12 +45,12 @@ public class LoadMoreFragment extends BaseLoadMoreFragment{
 	}
 
 	private void initData() {
-		mStatusView.setStatus(StatusView.Status.LOADING);
+		mStatusView.setStatus(Status.LOADING);
 		for (int i = 0; i < 10; i++) {
 			mAdapter.getData().add("Item " + i);
 		}
 		mAdapter.notifyDataSetChanged();
-		mStatusView.setStatus(StatusView.Status.NORMAL);
+		mStatusView.setStatus(Status.NORMAL);
 	}
 
 	@Override

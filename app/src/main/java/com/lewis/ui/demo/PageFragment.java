@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lewis.widget.ui.Status;
 import com.lewis.widget.ui.view.StatusView;
 
 /**
@@ -68,11 +69,11 @@ public class PageFragment extends Fragment{
 				break;
 		}
 
-		mStatusView.setStatus(StatusView.Status.LOADING);
+		mStatusView.setStatus(Status.LOADING);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				mStatusView.setStatus(StatusView.Status.NORMAL);
+				mStatusView.setStatus(Status.NORMAL);
 			}
 		}, 2000);
 	}

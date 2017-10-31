@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 
+import com.lewis.widget.ui.Status;
 import com.lewis.widget.ui.base.BaseStatusActivity;
-import com.lewis.widget.ui.view.StatusView;
 
 /**
  * Created by Lewis on 2017/9/28.
@@ -22,11 +22,11 @@ public class EmptyActivity extends BaseStatusActivity {
 
 		setTitle("EmptyView Activity");
 
-		mStatusView.setStatus(StatusView.Status.LOADING);
+		mStatusView.setStatus(Status.LOADING);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				mStatusView.setStatus(StatusView.Status.EMPTY);
+				mStatusView.setStatus(Status.EMPTY);
 			}
 		}, 2000);
 	}

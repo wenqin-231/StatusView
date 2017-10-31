@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
+import com.lewis.widget.ui.Status;
 import com.lewis.widget.ui.base.BaseStatusActivity;
-import com.lewis.widget.ui.view.StatusView;
 
 /**
  * Created by Lewis on 2017/10/9.
@@ -38,11 +38,11 @@ public class DelayActivity extends BaseStatusActivity {
 	}
 
 	private void toLoading() {
-		mStatusView.setStatus(StatusView.Status.LOADING);
+		mStatusView.setStatus(Status.LOADING);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				mStatusView.setStatus(StatusView.Status.NORMAL);
+				mStatusView.setStatus(Status.NORMAL);
 			}
 		}, 100);
 	}

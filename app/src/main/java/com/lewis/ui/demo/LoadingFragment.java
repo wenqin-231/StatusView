@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.lewis.widget.ui.Status;
 import com.lewis.widget.ui.base.BaseStatusFragment;
 import com.lewis.widget.ui.listener.OnRetryBtnClickListener;
-import com.lewis.widget.ui.view.StatusView;
 
 /**
  * Created by Lewis on 2017/9/25.
@@ -49,11 +49,11 @@ public class LoadingFragment extends BaseStatusFragment {
 	}
 
 	public void onNormalLoadingClick(View view) {
-		mStatusView.setStatus(StatusView.Status.LOADING);
+		mStatusView.setStatus(Status.LOADING);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				mStatusView.setStatus(StatusView.Status.NORMAL);
+				mStatusView.setStatus(Status.NORMAL);
 				mLoadNum ++;
 				mLoadText.setText("Normal load text success \n The number of times to load success: " + mLoadNum);
 			}
@@ -61,11 +61,11 @@ public class LoadingFragment extends BaseStatusFragment {
 	}
 
 	public void onDialogLoadingClick(View view) {
-		mStatusView.setStatus(StatusView.Status.DIALOG_LOADING);
+		mStatusView.setStatus(Status.DIALOG_LOADING);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				mStatusView.setStatus(StatusView.Status.NORMAL);
+				mStatusView.setStatus(Status.NORMAL);
 				mLoadNum ++;
 				mLoadText.setText("Dialog load text success \nThe number of times to load success: " + mLoadNum);
 			}
@@ -73,11 +73,11 @@ public class LoadingFragment extends BaseStatusFragment {
 	}
 
 	public void onErrorLoadingClick(View view) {
-		mStatusView.setStatus(StatusView.Status.LOADING);
+		mStatusView.setStatus(Status.LOADING);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				mStatusView.setStatus(StatusView.Status.ERROR);
+				mStatusView.setStatus(Status.ERROR);
 			}
 		}, 2000);
 	}

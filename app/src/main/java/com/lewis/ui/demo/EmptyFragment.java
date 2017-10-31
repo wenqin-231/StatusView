@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lewis.widget.ui.Status;
 import com.lewis.widget.ui.base.BaseStatusFragment;
-import com.lewis.widget.ui.view.StatusView;
 
 /**
  * Created by Lewis on 2017/9/28.
@@ -27,11 +27,11 @@ public class EmptyFragment extends BaseStatusFragment{
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		mStatusView.setStatus(StatusView.Status.LOADING);
+		mStatusView.setStatus(Status.LOADING);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				mStatusView.setStatus(StatusView.Status.EMPTY);
+				mStatusView.setStatus(Status.EMPTY);
 			}
 		}, 2000);
 

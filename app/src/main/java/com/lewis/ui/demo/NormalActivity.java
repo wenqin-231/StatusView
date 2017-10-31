@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.lewis.widget.ui.Status;
 import com.lewis.widget.ui.listener.OnRetryBtnClickListener;
 import com.lewis.widget.ui.view.StatusView;
 
@@ -56,11 +57,11 @@ public class NormalActivity extends AppCompatActivity{
 	}
 
 	public void onNormalLoadingClick(View view) {
-		mStatusView.setStatus(StatusView.Status.LOADING);
+		mStatusView.setStatus(Status.LOADING);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				mStatusView.setStatus(StatusView.Status.NORMAL);
+				mStatusView.setStatus(Status.NORMAL);
 				mLoadNum ++;
 				mLoadText.setText("Normal load text success \n The number of times to load success: " + mLoadNum);
 			}
@@ -81,11 +82,11 @@ public class NormalActivity extends AppCompatActivity{
 	}
 
 	public void onDialogLoadingClick(View view) {
-		mStatusView.setStatus(StatusView.Status.DIALOG_LOADING);
+		mStatusView.setStatus(Status.DIALOG_LOADING);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				mStatusView.setStatus(StatusView.Status.NORMAL);
+				mStatusView.setStatus(Status.NORMAL);
 				mLoadNum ++;
 				mLoadText.setText("Dialog load text success \nThe number of times to load success: " + mLoadNum);
 			}
@@ -93,21 +94,21 @@ public class NormalActivity extends AppCompatActivity{
 	}
 
 	public void onErrorLoadingClick(View view) {
-		mStatusView.setStatus(StatusView.Status.LOADING);
+		mStatusView.setStatus(Status.LOADING);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				mStatusView.setStatus(StatusView.Status.ERROR);
+				mStatusView.setStatus(Status.ERROR);
 			}
 		}, 2000);
 	}
 
 	public void onEmptyLoadingClick(View view) {
-		mStatusView.setStatus(StatusView.Status.LOADING);
+		mStatusView.setStatus(Status.LOADING);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				mStatusView.setStatus(StatusView.Status.EMPTY);
+				mStatusView.setStatus(Status.EMPTY);
 			}
 		}, 2000);
 	}
