@@ -21,6 +21,7 @@ public class DelayActivity extends BaseStatusActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_delay);
 
+		setTitle("DelayTime");
 		TextView delayTips = (TextView) findViewById(R.id.delay_tips);
 		delayTips.setText("Loading time mills is 100ms. \n Delay time mills is 600ms.");
 	}

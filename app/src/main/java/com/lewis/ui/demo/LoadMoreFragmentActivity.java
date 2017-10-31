@@ -21,6 +21,7 @@ public class LoadMoreFragmentActivity extends BaseLoadMoreActivity{
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_fragment);
+		setTitle("LoadMoreFragment");
 
 		mLoadMoreFragment = new LoadMoreFragment();
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

@@ -25,7 +25,7 @@ public class LoadMoreActivity extends BaseLoadMoreActivity {
 		setContentView(R.layout.activity_load_more);
 
 		RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-		setTitle("LoadMore");
+		setTitle("LoadMoreActivity");
 
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
 		mAdapter = new LoadMoreAdapter(this);
