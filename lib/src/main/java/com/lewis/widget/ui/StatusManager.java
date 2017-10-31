@@ -117,6 +117,7 @@ public class StatusManager {
         if (mContentView == null)
             throw new RuntimeException("You should setContent with a not null ViewGroup");
 
+        mParentView.removeViews(0, mParentView.getChildCount() - 1);
         if (isAddStatusView) {
             if (mStatusView == null) {
                 mStatusView = new StatusView(mContext);
