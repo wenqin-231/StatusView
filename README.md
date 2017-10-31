@@ -5,10 +5,10 @@ This is a library to help you show the different status of view such as loading 
 ### Features
 
 * Support both in Activity and Fragment.
-* Support the custom in different status of view.
-* Support error view to retry request by default button.
+* Support the custom view of different status.
+* Support the way to retry request by default button in error status.
 * Easily use. 
-* With a delay loading avoid the too fast loading.
+* With a delay loading by default avoid the too fast loading.
 * Support the Toolbar、NavigationBottomBar and etc.
 * Can use it with [my forked SpringView]("https://github.com/wenqin-231/SpringView") gracefully.
 
@@ -16,23 +16,15 @@ This is a library to help you show the different status of view such as loading 
 
 [DownLoad Demo](http://fir.im/StatusView)
 
-* Loading with dialog
+* It is the different status of Dialog, Error and Empty.
 
-  ![](https://github.com/wenqin-231/StatusView/blob/master/art/status_view_dialog.gif?raw=true)
-
-* Loading error
-
-  ![](https://github.com/wenqin-231/StatusView/blob/master/art/staus_view_error.gif?raw=true)
-
-* Loading empty
-
-  ![](https://github.com/wenqin-231/StatusView/blob/master/art/status_view_empty.gif?raw=true)
+![](https://github.com/wenqin-231/StatusView/blob/master/art/dialog_loading.gif?raw=true)![](https://github.com/wenqin-231/StatusView/blob/master/art/error_loading.gif?raw=true)![](https://github.com/wenqin-231/StatusView/blob/master/art/empty_loading.gif?raw=true)
 
 ### Usage
 
 * Use it  with `BaseStatusActivity` or `BaseStatusFragment` :
 
-```
+```java
 public class DemoMainActivity extends BaseStatusActivity {
     // use it just by two line of code
 	public void onLoadingClick(View view) {
@@ -49,7 +41,8 @@ public class DemoMainActivity extends BaseStatusActivity {
 
 * Use it without `BaseStatusActivity` or `BaseStatusFragment` :
 
-```
+```java
+// init StatusView in Activity 
 mStatusView = StatusView.initInActivity(this);
 // setup btn click in Error View
 mStatusView.setOnRetryBtnClickListener(new OnRetryBtnClickListener() {
@@ -60,9 +53,32 @@ mStatusView.setOnRetryBtnClickListener(new OnRetryBtnClickListener() {
 });
 ```
 
-More ways to use you can check it in my demo.
+* And also, you can set the code in your BaseActivity or BaseFragment by copying the code from `BaseStatusActivity` or `BaseStatusFragment`：
+
+```java
+// init StatusView with default ToolBar in BasseFragment
+ViewGroup parentView = (ViewGroup) view.getParent();
+View fragmentView = buildFragmentView(view);
+
+StatusManager statusManager = StatusManager.get(getActivity())
+        .setParentView(parentView)
+        .setContentView(fragmentView)
+        .setToolbar(onCreateToolbar())
+        .isAddStatusView(isAddStatusView())
+        .isAddToolBar(isAddToolBar())
+        .launch();
+
+mToolbar = statusManager.getToolbar();
+mStatusView = statusManager.getStatusView();
+```
+
+The code is so simple and you can set your custom attributes by using ` StatusManager`.
+
+More ways of usage you can find it in my demo.
 
 
+
+### Add the StausView
 
 **Step 1.** Add the JitPack repository to your build file
 
@@ -79,7 +95,7 @@ allprojects {
 
 ```
 dependencies {
-   compile 'com.github.wenqin-231:StatusView:v0.1'
+   compile 'com.github.wenqin-231:StatusView:v0.3'
 }
 ```
 
@@ -90,3 +106,9 @@ dependencies {
 The default empty view and error view are from [dribbble](https://dribbble.com/shots/2326563-The-Expression-of-The-Fork).
 
 ![](https://github.com/wenqin-231/StatusView/blob/master/art/dirbbble-icon.png?raw=true)
+
+
+
+At Last , if you have an idea or others,  you can contact with me by my Email : wenqin231@gmail.com .
+
+Hope you will like it.
