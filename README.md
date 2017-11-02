@@ -61,17 +61,17 @@ mStatusView.setOnRetryBtnClickListener(new OnRetryBtnClickListener() {
 public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 	super.onViewCreated(view, savedInstanceState);
 	StatusManager statusManager = StatusManager
-      // should be this and not set getActivity in it.
+      	// should be this and not set getActivity in it.
 		.get(this)
-      // set your contentView and it is usually the view that created in OnCreateView
+     	 // set your contentView and it is usually the view that created in OnCreateView
 		.setContentView(view)
-      // set true to add a StatusView in your view and your set false to avoid loading the unnecessary setting.
+      	// set true to add a StatusView in your view and your set false to avoid loading the unnecessary setting.
 		.isAddStatusView(true)
-      // set true to addToolbar and if your set false the setToolbar will be invalid.
+      	// set true to addToolbar and if your set false the setToolbar will be invalid.
 		.isAddToolbar(true)
-      // set your own Toolbar and if you set isAddToolbar to be true, there will be set a DefaultToolbar in it.
-       	.setToolbar(onCreateToolbar())
-      // start the StatusView, the end of StatusManager.
+		// set your own Toolbar and if you set isAddToolbar to be true, there will be set a DefaultToolbar in it.
+      	.setToolbar(onCreateToolbar())
+      	// start the StatusView, the end of StatusManager.
 		.launch();
 
 		mStatusView = statusManager.getStatusView();
