@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,49 +26,67 @@ public class StatusManager {
 
     private View mLineView = null; // a line below of Toolbar for Android version < 21
 
-    private Context mContext;
+    private Activity mActivity;
+    private Fragment mV4Fragment;
+    private android.app.Fragment mFragment;
     private Toolbar mToolbar;
-    private ViewGroup mParentView;
     private View mContentView;
     private StatusView mStatusView;
-    private boolean isAddStatusView;
-    private boolean isAddToolBar;
+    private boolean isAddStatusView = true;
+    private boolean isAddToolbar;
     private boolean isStatusViewBelowToolBar;
 
-    private StatusManager(Context context, Builder builder) {
-        this.mContext = context;
+    private StatusManager(Builder builder) {
+        this.mActivity = builder.mActivity;
         this.mToolbar = builder.mToolbar;
-        this.mParentView = builder.mParentView;
         this.mContentView = builder.mContentView;
         this.mStatusView = builder.mStatusView;
         this.isAddStatusView = builder.isAddStatusView;
-        this.isAddToolBar = builder.isAddToolBar;
+        this.isAddToolbar = builder.isAddToolbar;
         this.isStatusViewBelowToolBar = builder.isStatusViewBelowToolBar;
+        this.mFragment = builder.mFragment;
+        this.mV4Fragment = builder.mV4Fragment;
     }
 
-    public static Builder get(Activity context) {
-        return new Builder(context);
+    public static Builder get(Activity activity) {
+        return new Builder(activity);
+    }
+
+    public static Builder get(Fragment fragment) {
+        return new Builder(fragment);
+    }
+
+    public static Builder get(android.app.Fragment fragment) {
+        return new Builder(fragment);
     }
 
 
     public static class Builder {
-        private Activity mContext;
+        private Activity mActivity;
+        private Fragment mV4Fragment;
+        private android.app.Fragment mFragment;
         private Toolbar mToolbar;
-        private ViewGroup mParentView;
         private View mContentView;
         private StatusView mStatusView;
         private boolean isAddStatusView;
-        private boolean isAddToolBar;
+        private boolean isAddToolbar;
         private boolean isStatusViewBelowToolBar;
 
         public Builder(Activity context) {
-            mContext = context;
+            mActivity = context;
+        }
+
+        public Builder(Fragment v4Fragment) {
+            mV4Fragment = v4Fragment;
+        }
+
+        public Builder(android.app.Fragment fragment) {
+            mFragment = fragment;
         }
 
         private StatusManager build() {
-            return new StatusManager(mContext, this);
+            return new StatusManager(this);
         }
-
 
         public Builder setToolbar(Toolbar toolbar) {
             mToolbar = toolbar;
@@ -89,18 +108,13 @@ public class StatusManager {
             return this;
         }
 
-        public Builder isAddToolBar(boolean addToolBar) {
-            isAddToolBar = addToolBar;
+        public Builder isAddToolbar(boolean addToolbar) {
+            isAddToolbar = addToolbar;
             return this;
         }
 
         public Builder isStatusViewBelowToolBar(boolean statusViewBelowToolBar) {
             isStatusViewBelowToolBar = statusViewBelowToolBar;
-            return this;
-        }
-
-        public Builder setParentView(ViewGroup parentView) {
-            mParentView = parentView;
             return this;
         }
 
@@ -112,29 +126,40 @@ public class StatusManager {
 
     public StatusManager launch() {
 
-        if (mParentView == null)
-            throw new RuntimeException("You should setParent with a not null ViewGroup");
-        if (mContentView == null)
-            throw new RuntimeException("You should setContent with a not null ViewGroup");
+        Context context;
+        ViewGroup parentView;
 
-        mParentView.removeViews(0, mParentView.getChildCount() - 1);
-        if (isAddStatusView) {
-            if (mStatusView == null) {
-                mStatusView = new StatusView(mContext);
+        if (mActivity != null) {
+            context = mActivity;
+            parentView = mActivity.getWindow().getDecorView().findViewById(android.R.id.content);
+            if (mContentView == null) {
+                mContentView = parentView.getChildAt(0);
             }
-
-            mParentView.addView(mStatusView);
+        } else {
+            if (mContentView == null)
+                throw new RuntimeException("You should setContent with a not null ViewGroup in Fragment");
+            context = mV4Fragment != null ? mV4Fragment.getActivity() : mFragment.getActivity();
+            parentView = (ViewGroup) mContentView.getParent();
         }
 
-        if (isAddToolBar) {
-            if (mToolbar == null) {
-                mToolbar = new DefaultToolbar(mContext);
+        parentView.removeViews(0, parentView.getChildCount() - 1);
+        if (isAddStatusView) {
+            if (mStatusView == null) {
+                mStatusView = new StatusView(context);
             }
-            mParentView.addView(mToolbar);
+
+            parentView.addView(mStatusView);
+        }
+
+        if (isAddToolbar) {
+            if (mToolbar == null) {
+                mToolbar = new DefaultToolbar(context);
+            }
+            parentView.addView(mToolbar);
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                mLineView = getLineView(mContext);
-                mParentView.addView(mLineView);
+                mLineView = getLineView(context);
+                parentView.addView(mLineView);
             }
 
             mContentView.post(new Runnable() {

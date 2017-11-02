@@ -37,10 +37,9 @@ public class BaseStatusActivity extends AppCompatActivity {
 		View contentView = buildContentView(parentView.getChildAt(0));
 
 		StatusManager statusManager = StatusManager.get(this)
-				.setParentView(parentView)
 				.setContentView(contentView)
+				.isAddToolbar(isAddToolBar())
 				.isAddStatusView(isAddStatusView())
-				.isAddToolBar(isAddToolBar())
 				.setToolbar(onCreateToolbar())
 				.launch();
 

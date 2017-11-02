@@ -57,19 +57,26 @@ mStatusView.setOnRetryBtnClickListener(new OnRetryBtnClickListener() {
 
 ```java
 // init StatusView with default ToolBar in BasseFragment
-ViewGroup parentView = (ViewGroup) view.getParent();
-View fragmentView = buildFragmentView(view);
+@Override
+public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+	super.onViewCreated(view, savedInstanceState);
+	StatusManager statusManager = StatusManager
+      // should be this and not set getActivity in it.
+		.get(this)
+      // set your contentView and it is usually the view that created in OnCreateView
+		.setContentView(view)
+      // set true to add a StatusView in your view and your set false to avoid loading the unnecessary setting.
+		.isAddStatusView(true)
+      // set true to addToolbar and if your set false the setToolbar will be invalid.
+		.isAddToolbar(true)
+      // set your own Toolbar and if you set isAddToolbar to be true, there will be set a DefaultToolbar in it.
+       	.setToolbar(onCreateToolbar())
+      // start the StatusView, the end of StatusManager.
+		.launch();
 
-StatusManager statusManager = StatusManager.get(getActivity())
-        .setParentView(parentView)
-        .setContentView(fragmentView)
-        .setToolbar(onCreateToolbar())
-        .isAddStatusView(isAddStatusView())
-        .isAddToolBar(isAddToolBar())
-        .launch();
-
-mToolbar = statusManager.getToolbar();
-mStatusView = statusManager.getStatusView();
+		mStatusView = statusManager.getStatusView();
+		mToolbar = statusManager.getToolbar();
+	}
 ```
 
 The code is so simple and you can set your custom attributes by using ` StatusManager`.
@@ -87,7 +94,7 @@ allprojects {
 	repositories {
 		...
 		maven { url 'https://jitpack.io' }
-	}
+	}	
 }
 ```
 
@@ -95,7 +102,7 @@ allprojects {
 
 ```
 dependencies {
-   compile 'com.github.wenqin-231:StatusView:v0.3'
+   compile 'com.github.wenqin-231:StatusView:v0.33'
 }
 ```
 
