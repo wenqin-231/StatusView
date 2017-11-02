@@ -101,7 +101,7 @@ allprojects {
 
 ```
 dependencies {
-   compile 'com.github.wenqin-231:StatusView:v0.3'
+   compile 'com.github.wenqin-231:StatusView:v0.33'
 }
 ```
 
