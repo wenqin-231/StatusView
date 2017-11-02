@@ -119,9 +119,7 @@ At Last , if you have an idea or others,  you can contact with me by my Email : 
 
 Hope you will like it.
 
-
-
-###LICENSE
+### LICENSE
 
 ```
 Copyright (c) 2017 wenqin-231
