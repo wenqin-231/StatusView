@@ -69,7 +69,7 @@ public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		.isAddStatusView(true)
 		// set true to addToolbar and if your set false the setToolbar will be invalid.
 		.isAddToolbar(true)
-		// set your own Toolbar and if you set isAddToolbar to be true, there will be set a DefaultToolbar in it.
+		// set your own Toolbar and if you set isAddToolbar to be true, there will set a DefaultToolbar in it.
 		.setToolbar(onCreateToolbar())
 		.launch();
 
