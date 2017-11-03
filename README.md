@@ -14,7 +14,7 @@ This is a library to help you show the different status of view such as loading 
 
 ### Demo
 
-[DownLoad Demo](http://fir.im/StatusView)
+[Download Demo](http://fir.im/StatusView)
 
 * It is the different status of Dialog, Error and Empty.
 
@@ -53,7 +53,7 @@ mStatusView.setOnRetryBtnClickListener(new OnRetryBtnClickListener() {
 });
 ```
 
-* And also, you can set the code in your BaseActivity or BaseFragment by copying the code from `BaseStatusActivity` or `BaseStatusFragment`：
+* Besides, you can set the code in your BaseActivity or BaseFragment by copying the code from `BaseStatusActivity` or `BaseStatusFragment`：
 
 ```java
 // init StatusView with default ToolBar in BasseFragment
@@ -61,15 +61,15 @@ mStatusView.setOnRetryBtnClickListener(new OnRetryBtnClickListener() {
 public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 	super.onViewCreated(view, savedInstanceState);
 	StatusManager statusManager = StatusManager
-		// should be this and not set getActivity in it.
+		// Should be this and not set getActivity in it.
 		.get(this)
-		// set your ContentView and it is usually the view that created in OnCreateView
+		// Set your ContentView and it is usually the view that created in OnCreateView()
 		.setContentView(view)
-		// set true to add a StatusView in your view and your set false to avoid loading the unnecessary setting.
+		// Set true to add a StatusView in your view and your set false to avoid loading the unnecessary setting.
 		.isAddStatusView(true)
-		// set true to addToolbar and if your set false the setToolbar will be invalid.
+		// Set true to add a Toolbar and the setToolbar() will be invalid if your set false.
 		.isAddToolbar(true)
-		// set your own Toolbar and if you set isAddToolbar to be true, there will set a DefaultToolbar in it.
+		// There will create a DefaultToolbar if you set null in it.
 		.setToolbar(onCreateToolbar())
 		.launch();
 
@@ -80,7 +80,7 @@ public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
 The code is so simple and you can set your custom attributes by using ` StatusManager`.
 
-More ways of usage you can find it in my demo.
+More ways of usage can be found in my demo.
 
 
 
@@ -113,9 +113,9 @@ The default empty view and error view are from [dribbble](https://dribbble.com/s
 
 ![](https://github.com/wenqin-231/StatusView/blob/master/art/dirbbble-icon.png?raw=true)
 
+BTW, I write a [blog](https://medium.com/@wenqin231/%E4%B8%93%E6%B3%A8%E4%BA%8E%E6%98%BE%E7%A4%BA%E9%80%9A%E7%94%A8%E5%B8%83%E5%B1%80%E7%9A%84statusview-51e3ace6bb07) in Chinese about it.
 
-
-At Last , if you have an idea or others,  you can contact with me by my Email : wenqin231@gmail.com .
+At last , if you have an idea or others,  you can contact with me by my Email : wenqin231@gmail.com .
 
 Hope you will like it.
 
