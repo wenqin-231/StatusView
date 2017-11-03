@@ -63,11 +63,11 @@ public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 	StatusManager statusManager = StatusManager
 		// Should be this and not set getActivity in it.
 		.get(this)
-		// Set your ContentView and it is usually the view that created in OnCreateView()
+		// Set your ContentView and it is usually the view that created in OnCreateView().
 		.setContentView(view)
-		// Set true to add a StatusView in your view and your set false to avoid loading the unnecessary setting.
+		// Set true to add a StatusView in your view and set false to avoid loading the unnecessary setting.
 		.isAddStatusView(true)
-		// Set true to add a Toolbar and the setToolbar() will be invalid if your set false.
+		// Set true to add a Toolbar and set false the setToolbar() will be invalid.
 		.isAddToolbar(true)
 		// There will create a DefaultToolbar if you set null in it.
 		.setToolbar(onCreateToolbar())
