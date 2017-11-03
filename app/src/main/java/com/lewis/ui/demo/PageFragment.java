@@ -52,11 +52,14 @@ public class PageFragment extends Fragment{
 	}
 
 	@Override
+	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		mStatusView = StatusView.initInFragment(getActivity(), mContentLayout);
+	}
+
+	@Override
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
-		mStatusView = StatusView.initInFragment(getActivity(), mContentLayout);
-
 		switch (mPageIndex) {
 			case 0:
 				mCenterText.setText("HOME");

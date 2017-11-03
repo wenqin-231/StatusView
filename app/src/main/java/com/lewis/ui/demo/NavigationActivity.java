@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 
 import com.lewis.widget.ui.base.BaseStatusActivity;
 
@@ -18,7 +19,8 @@ import com.lewis.widget.ui.base.BaseStatusActivity;
  * Description:
  */
 
-public class NavigationActivity extends BaseStatusActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class NavigationActivity extends BaseStatusActivity implements
+		BottomNavigationView.OnNavigationItemSelectedListener{
 
 	private ViewPager mViewPager;
 	private BottomNavigationView mBottomNavigationView;
@@ -103,8 +105,9 @@ public class NavigationActivity extends BaseStatusActivity implements BottomNavi
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 				bnvHeight += mBottomNavigationView.getTranslationZ();
 			}
-
-			mStatusView.setMarginBottom(bnvHeight + 4);
+			RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mViewPager.getLayoutParams();
+			lp.setMargins(lp.leftMargin, lp.topMargin, lp.rightMargin, lp.bottomMargin + bnvHeight);
+			mViewPager.setLayoutParams(lp);
 		}
 	}
 
@@ -122,7 +125,7 @@ public class NavigationActivity extends BaseStatusActivity implements BottomNavi
 
 		@Override
 		public int getCount() {
-			return mBottomNavigationView.getMaxItemCount();
+			return 3;
 		}
 	}
 }
