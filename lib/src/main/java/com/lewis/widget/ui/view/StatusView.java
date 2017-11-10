@@ -130,9 +130,9 @@ public class StatusView extends FrameLayout {
         mEmptyView = inflate(context, R.layout.view_empty, null);
         mErrorView = inflate(context, R.layout.view_error, null);
 
-        mLoadingLayout = mLoadingView.findViewById(R.id.dialog_loading_layout);
-        mLoadingText = mLoadingView.findViewById(R.id.dialog_loading_text);
-        mLoadingProgress = mLoadingView.findViewById(R.id.dialog_loading_progress);
+        mLoadingLayout = mLoadingView.findViewById(R.id.loading_layout);
+        mLoadingText = mLoadingView.findViewById(R.id.loading_text);
+        mLoadingProgress = mLoadingView.findViewById(R.id.loading_progress);
 
         mDialogParentLayout = mDialogLoadingView.findViewById(R.id.dialog_loading_content_layout);
         mDialogLayout = mDialogLoadingView.findViewById(R.id.dialog_loading_layout);
