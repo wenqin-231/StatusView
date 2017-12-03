@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-version = 0.34
+version = 0.35
 
 group = "com.lewis.widget.ui"
 
