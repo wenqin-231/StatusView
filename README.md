@@ -26,7 +26,7 @@ This is a library to help you show the different status of view such as loading 
 
 ```java
 public class LoadingActivity extends BaseStatusActivity {
-    // use it just by two line of code
+  	// use it just by two line of code
   	// when you want to load something 
   	mStatusView.setStatus(Status.LOADING);
 	// after loading finish 
@@ -99,7 +99,7 @@ allprojects {
 
 ```
 dependencies {
-   compile 'com.github.wenqin-231:StatusView:v0.33'
+   compile 'com.github.wenqin-231:StatusView:v0.35'
 }
 ```
 
