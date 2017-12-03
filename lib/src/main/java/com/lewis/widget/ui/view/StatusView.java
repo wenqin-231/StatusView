@@ -36,7 +36,10 @@ import com.lewis.widget.ui.listener.OnRetryBtnClickListener;
 
 public class StatusView extends FrameLayout {
 
-    private static final int DEFAULT_DELAY_TIME = 600; // default mills to show the content view by delay when loading too fast
+    /**
+     * default mills to show the content view by delay when loading too fast
+     */
+    private static final int DEFAULT_DELAY_TIME = 600;
 
     private Status mCurrentStatus = Status.NORMAL;
 
@@ -99,11 +102,13 @@ public class StatusView extends FrameLayout {
     }
 
     public static StatusView initInFragment(Context context, ViewGroup parentView) {
-        if (context == null)
+        if (context == null) {
             throw new RuntimeException("you can not init StatusView with null context");
+        }
 
-        if (parentView == null)
+        if (parentView == null) {
             throw new RuntimeException("Can not get the parent of Fragment's view");
+        }
 
         StatusView statusView = new StatusView(context);
         parentView.addView(statusView, ViewGroup.LayoutParams.MATCH_PARENT,
@@ -112,8 +117,9 @@ public class StatusView extends FrameLayout {
     }
 
     public static StatusView initInActivity(Activity context) {
-        if (context == null)
+        if (context == null) {
             throw new RuntimeException("you can not init StatusView with null context");
+        }
 
         ViewGroup contentView = context.getWindow().getDecorView().findViewById(android.R.id.content);
         StatusView statusView = new StatusView(context);
@@ -153,8 +159,9 @@ public class StatusView extends FrameLayout {
         mErrorBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mOnRetryBtnClickListener != null)
+                if (mOnRetryBtnClickListener != null) {
                     mOnRetryBtnClickListener.onClick(view);
+                }
             }
         });
 
@@ -171,6 +178,10 @@ public class StatusView extends FrameLayout {
     }
 
     public void setStatus(Status status) {
+        if (mCurrentStatus == status) {
+            return;
+        }
+
         mCurrentStatus = status;
         mLoadingTime = 0;
         setDelayCall(status, new OnDelayCallBackListener() {
@@ -200,9 +211,12 @@ public class StatusView extends FrameLayout {
             case NORMAL:
                 break;
             case OTHER:
-                if (mOtherView == null)
+                if (mOtherView == null) {
                     throw new RuntimeException("You can not set other view with a null custom view");
+                }
                 addView(mOtherView);
+                break;
+            default:
                 break;
         }
     }
@@ -216,36 +230,41 @@ public class StatusView extends FrameLayout {
     }
 
     public void setLoadingView(View loadingView) {
-        if (loadingView == null)
+        if (loadingView == null) {
             throw new RuntimeException("loadingView can not be null in setLoadingView");
+        }
         mLoadingView = loadingView;
         mLoadingView.setClickable(true);
     }
 
     public void setDialogLoadingView(View dialogLoadingView) {
-        if (dialogLoadingView == null)
+        if (dialogLoadingView == null) {
             throw new RuntimeException("dialogLoadingView can not be null in setDialogLoadingView");
+        }
         mDialogLoadingView = dialogLoadingView;
         mDialogLoadingView.setClickable(true);
     }
 
     public void setEmptyView(View emptyView) {
-        if (emptyView == null)
+        if (emptyView == null) {
             throw new RuntimeException("emptyView can not be null in setEmptyView");
+        }
         mEmptyView = emptyView;
         mEmptyView.setClickable(true);
     }
 
     public void setErrorView(View errorView) {
-        if (errorView == null)
+        if (errorView == null) {
             throw new RuntimeException("errorView can not be null in setErrorView");
+        }
         mErrorView = errorView;
         mErrorView.setClickable(true);
     }
 
     public void setOtherView(View otherView) {
-        if (otherView == null)
+        if (otherView == null) {
             throw new RuntimeException("your custom view can not be null");
+        }
         mOtherView = otherView;
         mOtherView.setClickable(true);
     }
@@ -256,18 +275,21 @@ public class StatusView extends FrameLayout {
     }
 
     public void setLoadingViewBackgroundColor(@ColorRes int resId) {
-        if (mLoadingLayout != null)
+        if (mLoadingLayout != null) {
             mDialogLayout.setBackgroundColor(ContextCompat.getColor(getContext(), resId));
+        }
     }
 
     public void setDialogLoadingViewBackgroundColor(@ColorRes int resId) {
-        if (mDialogParentLayout != null)
+        if (mDialogParentLayout != null) {
             mDialogLayout.setBackgroundColor(ContextCompat.getColor(getContext(), resId));
+        }
     }
 
     public void setLoadingDialogBackground(@DrawableRes int resId) {
-        if (mDialogLayout != null)
+        if (mDialogLayout != null) {
             mDialogLayout.setBackground(ContextCompat.getDrawable(getContext(), resId));
+        }
     }
 
     public void setOnRetryBtnClickListener(OnRetryBtnClickListener onRetryBtnClickListener) {
@@ -279,19 +301,22 @@ public class StatusView extends FrameLayout {
     }
 
     public void setDialogLoadingText(String text) {
-        if (mDialogText != null)
+        if (mDialogText != null) {
             mDialogText.setText(text);
+        }
     }
 
     public void setDialogProgressBarColor(@ColorRes int resId) {
-        if (mDialogProgressBar != null)
+        if (mDialogProgressBar != null) {
             setProgressBarColor(mDialogProgressBar, resId);
+        }
 
     }
 
     public void setLoadingText(String text) {
-        if (mLoadingText != null)
+        if (mLoadingText != null) {
             mLoadingText.setText(text);
+        }
     }
 
     public void setLoadingText(@StringRes int resId) {
@@ -299,18 +324,21 @@ public class StatusView extends FrameLayout {
     }
 
     public void setProgressBarColor(@ColorRes int resId) {
-        if (mLoadingProgress != null)
+        if (mLoadingProgress != null) {
             setProgressBarColor(mLoadingProgress, resId);
+        }
     }
 
     public void setEmptyViewIcon(int resId) {
-        if (mEmptyIcon != null)
+        if (mEmptyIcon != null) {
             mEmptyIcon.setImageResource(resId);
+        }
     }
 
     public void setErrorViewIcon(int resId) {
-        if (mErrorIcon != null)
+        if (mErrorIcon != null) {
             mErrorIcon.setImageResource(resId);
+        }
     }
 
     public void setDialogText(TextView dialogText) {
@@ -318,28 +346,34 @@ public class StatusView extends FrameLayout {
     }
 
     public void setEmptyTitle(String emptyTitle) {
-        if (mEmptyTitle != null)
+        if (mEmptyTitle != null) {
             mEmptyTitle.setText(emptyTitle);
+        }
     }
 
     public void setEmptySubheading(String emptySubheading) {
-        if (mEmptySubheading != null)
+        if (mEmptySubheading != null) {
             mEmptySubheading.setText(emptySubheading);
+        }
     }
 
     public void setErrorTitle(String errorTitle) {
-        if (mEmptyTitle != null)
+        if (mEmptyTitle != null) {
             mErrorTitle.setText(errorTitle);
+        }
     }
 
     public void setErrorSubheading(String errorSubheading) {
-        if (mErrorSubheading != null)
+        if (mErrorSubheading != null) {
             mErrorSubheading.setText(errorSubheading);
+        }
     }
 
     public void setMargin(int left, int top, int right, int bottom) {
         LayoutParams layoutParams = (LayoutParams) getLayoutParams();
-        if (layoutParams == null) throw new RuntimeException("StatusView is not added in a layout");
+        if (layoutParams == null) {
+            throw new RuntimeException("StatusView is not added in a layout");
+        }
         layoutParams.setMargins(left, top, right, bottom);
         setLayoutParams(layoutParams);
 
@@ -351,7 +385,9 @@ public class StatusView extends FrameLayout {
 
     public void setMarginTop(int top) {
         LayoutParams layoutParams = (LayoutParams) getLayoutParams();
-        if (layoutParams == null) throw new RuntimeException("StatusView is not added in a layout");
+        if (layoutParams == null) {
+            throw new RuntimeException("StatusView is not added in a layout");
+        }
         layoutParams.setMargins(layoutParams.leftMargin, top + layoutParams.topMargin,
                 layoutParams.rightMargin, layoutParams.bottomMargin);
         setLayoutParams(layoutParams);
@@ -359,7 +395,9 @@ public class StatusView extends FrameLayout {
 
     public void setMarginBottom(int bottom) {
         LayoutParams layoutParams = (LayoutParams) getLayoutParams();
-        if (layoutParams == null) throw new RuntimeException("StatusView is not added in a layout");
+        if (layoutParams == null) {
+            throw new RuntimeException("StatusView is not added in a layout");
+        }
         layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin,
                 layoutParams.rightMargin, layoutParams.bottomMargin + bottom);
         setLayoutParams(layoutParams);
@@ -385,7 +423,9 @@ public class StatusView extends FrameLayout {
         mDelayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (listener != null) listener.call(status);
+                if (listener != null) {
+                    listener.call(status);
+                }
             }
         }, !isLoadingStatus(status) && mLoadingTime < mDelayMills ? mDelayMills : 0);
     }

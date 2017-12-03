@@ -25,17 +25,15 @@ This is a library to help you show the different status of view such as loading 
 * Use it  with `BaseStatusActivity` or `BaseStatusFragment` :
 
 ```java
-public class DemoMainActivity extends BaseStatusActivity {
+public class LoadingActivity extends BaseStatusActivity {
     // use it just by two line of code
-	public void onLoadingClick(View view) {
-		mStatusView.setStatus(StatusView.Status.LOADING);
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				mStatusView.setStatus(StatusView.Status.NORMAL);
-			}
-		}, 2000);
-	}
+  	// when you want to load something 
+  	mStatusView.setStatus(Status.LOADING);
+	// after loading finish 
+  	mStatusView.setStatus(Status.Normal);
+  	
+ 	// add a DefaultToolbar by default and you can setTitle or setCenterTitle for it.
+  	setTitle("Loading in Activity");
 }
 ```
 
