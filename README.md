@@ -82,7 +82,7 @@ More ways of usage can be found in my demo.
 
 
 
-### Add the StausView
+### Dependency
 
 **Step 1.** Add the JitPack repository to your build file
 
