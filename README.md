@@ -88,10 +88,10 @@ More ways of usage can be found in my demo.
 
 ```
 allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
+   repositories {
+      ...
+      maven { url 'https://jitpack.io' }
+   }
 }
 ```
 
