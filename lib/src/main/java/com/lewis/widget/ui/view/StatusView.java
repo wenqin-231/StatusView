@@ -75,9 +75,7 @@ public class StatusView extends FrameLayout {
     private TextView mErrorTitle, mErrorSubheading;
     private Button mErrorBtn;
     private OnRetryBtnClickListener mOnRetryBtnClickListener;
-
-    private int mMarginTop, mMarginBottom, mMarginLeft, mMarginRight;
-
+    
     private long mStartTime, mLoadingTime;
 
     private long mDelayMills = DEFAULT_DELAY_TIME;
@@ -369,28 +367,13 @@ public class StatusView extends FrameLayout {
         }
     }
 
-    public void setMargin(int left, int top, int right, int bottom) {
-        LayoutParams layoutParams = (LayoutParams) getLayoutParams();
-        if (layoutParams == null) {
-            throw new RuntimeException("StatusView is not added in a layout");
-        }
-        layoutParams.setMargins(left, top, right, bottom);
-        setLayoutParams(layoutParams);
-
-        mMarginLeft = left;
-        mMarginRight = right;
-        mMarginTop = top;
-        mMarginBottom = bottom;
-    }
-
     public void setMarginTop(int top) {
         LayoutParams layoutParams = (LayoutParams) getLayoutParams();
         if (layoutParams == null) {
             throw new RuntimeException("StatusView is not added in a layout");
         }
-        layoutParams.setMargins(layoutParams.leftMargin, top + layoutParams.topMargin,
-                layoutParams.rightMargin, layoutParams.bottomMargin);
-        setLayoutParams(layoutParams);
+        layoutParams.topMargin = top;
+        requestLayout();
     }
 
     public void setMarginBottom(int bottom) {
@@ -398,9 +381,8 @@ public class StatusView extends FrameLayout {
         if (layoutParams == null) {
             throw new RuntimeException("StatusView is not added in a layout");
         }
-        layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin,
-                layoutParams.rightMargin, layoutParams.bottomMargin + bottom);
-        setLayoutParams(layoutParams);
+        layoutParams.bottomMargin = bottom;
+        requestLayout();
     }
 
     public void setDelayMillsForLoading(long timeMills) {
